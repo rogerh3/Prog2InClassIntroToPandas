@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Apr 16 11:29:12 2021
+
+@author: rh.hayden
+Title: Tuples and Pandas
+"""
+#You can import panda as whatever one wants, pd is the usual
+import pandas as pd
+
+#Panda - Series = Single Column (1D Array) - Everything gets it's own column
+#Panda - DataFrame = Multi-Dimensional
+
+#Create a basic array
+#The Names are the column labels, following the names is the contents
+student = {'Luci':[90, 83, 99, 91], 
+           'Mike':[78, 84, 90, 82]}
+
+#Convert to a DataFrame Panda
+studentGrades = pd.DataFrame(student)
+#Labeling Rows
+studentGrades = pd.DataFrame(student, index = ['HW1', 'HW2', 'EXAM1', 'HW3'])
+
+#Output the DataFrame
+print(studentGrades)
+#Pulls up this specific index at the end
+print(studentGrades.loc['HW2'])
+
+#Looking at files on Desktop
+#files go directly into a panda, you do not need to change from an array
+readData = pd.read_csv('/Users/rh.hayden/Desktop/data.csv')
+#Below would read headers differently
+#readData = pd.read_csv('/Users/rh.hayden/Desktop/data.csv', index_col = 0)
+print(readData)
+#readData.head(10) - Top 10 rows of data
+#readData.tail(10) - Bottom 10 rows of data
+print(readData.info())
+
+#Writing into files - Can import it then to another software
+#studentGrades.to_csv('/Users/rh.hayden/Desktop/dataStudent.csv')
+
+#Remove Duplicates
+#readData.drop_duplicates()
+
+#Remove Nulls
+#readData.isnull().sum()
+#readData.dropna()
+
+#Imputation (replace null with mean, or average of all other values in that column)
+#readData.filena(readData.mean(), inplace = True)
